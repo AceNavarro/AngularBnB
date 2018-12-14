@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "bnb",
       "schematics": {},
       "architect": {
         "build": {
@@ -137,5 +137,11 @@
       }
     }
   },
-  "defaultProject": "AngularBnB"
+  "defaultProject": "AngularBnB",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss",
+      "spec": false
+    }
+  }
 }

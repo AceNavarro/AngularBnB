@@ -1,0 +1,16 @@
+<div class="container">
+  <p>
+    <img class="img-fluid" src="{{rental.image}}" alt="">
+  </p>
+  <div>
+    <p>Id: {{ rental.id }}</p>
+    <p>Title: {{ rental.title }}</p>
+    <p>City: {{ rental.city }}</p>
+    <p>Street: {{ rental.street }}</p>
+    <p>Category: {{ rental.category }}</p>
+    <p>Description: {{ rental.description }}</p>
+    <p>Bedrooms: {{ rental.bedrooms }}</p>
+    <p>Daily Rate: ${{ rental.dailyRate.toFixed(2) }}</p>
+    <p>Shared: {{ rental.shared }}</p>
+  </div>
+</div>
