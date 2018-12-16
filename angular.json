@@ -24,7 +24,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -63,7 +64,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AngularBnB:build"
+            "browserTarget": "AngularBnB:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

@@ -23,5 +23,4 @@ export class RentalDetailComponent implements OnInit {
         .subscribe(rental => this.rental = rental,
                    err => console.error(err));
   }
-
 }
