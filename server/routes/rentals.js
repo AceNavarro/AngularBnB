@@ -1,5 +1,7 @@
 const router = require("express").Router(),
-      Rental = require("../models/rental");
+      Rental = require("../models/rental"),
+      UserController = require("../controllers/user"),
+      { normalizeErrors } = require("../helpers/mongoose");
 
 // INDEX
 router.get("/", async (req, res) => {
@@ -14,7 +16,7 @@ router.get("/:id", (req, res) => {
       res.json(rental);
     })
     .catch(err => {
-      res.status(422).send({ errors: [{ title: "Rental Error", detail: "Could not find rental!" }]});
+      res.status(422).send({ errors: normalizeErrors(err.errors) });
     })
 });
 

@@ -1,22 +1,26 @@
 const express = require("express"),
       mongoose = require("mongoose"),
       config = require("./config/dev"),
-      Rental = require("./models/rental"),
       FakeDb = require("./models/fake-db");
 
 
 // ===== DATABASE =============================================================
-mongoose.connect(config.DB_URI, { useNewUrlParser: true })
+mongoose.connect(config.DB_URI, {
+    useNewUrlParser: true, 
+    useCreateIndex: true 
+  })
   .then(() => {
     new FakeDb().seedDb();
   });
 
 // ===== APP SETUP ============================================================
 const app = express();
+app.use(express.json());
 
 
 // ===== ROUTES ===============================================================
 app.use("/api/v1/rentals", require("./routes/rentals"));
+app.use("/api/v1/users", require("./routes/users"));
 
 
 // ===== LISTEN ===============================================================
