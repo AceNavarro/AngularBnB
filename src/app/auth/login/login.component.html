@@ -1,0 +1,64 @@
+<section id="login">
+  <div class="bnb-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1>Login</h1>
+
+        <div class="alert alert-success" *ngIf="message !== ''">
+          <p>{{message}}</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"
+                    class="form-control"
+                    id="email"
+                    formControlName="email">
+            <div *ngIf="isInvalidInput('email')" 
+                 class="alert alert-danger">
+              <div *ngIf="getInputErrors('email').required">
+                Email is required.
+              </div>
+              <div *ngIf="getInputErrors('email').pattern">
+                Email format is incorrect.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"
+                    class="form-control"
+                    id="password"
+                    formControlName="password">
+            <div *ngIf="isInvalidInput('password')" 
+                 class="alert alert-danger">
+              <div *ngIf="getInputErrors('password').required">
+                Password is required.
+              </div>
+            </div>
+          </div>
+
+          <button [disabled]="loginForm.invalid" 
+                  type="submit" 
+                  class="btn btn-bnb">
+            Submit
+          </button>
+        </form>
+
+        <div class="alert alert-danger mt-3" *ngIf="errors.length > 0">
+          <p *ngFor="let error of errors">{{error.detail}}</p>
+        </div>
+
+      </div>
+      <div class="col-md-6 ml-auto">
+        <div class="image-container">
+          <h2 class="catchphrase">Hundreds of awesome places in reach of few clicks.</h2>
+          <div class="img-fluid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  

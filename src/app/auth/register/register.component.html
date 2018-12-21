@@ -1,0 +1,128 @@
+<section id="register">
+  <div class="bnb-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1 class="page-title">Register</h1>
+        <form #registerForm="ngForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input [(ngModel)]="formData.username" 
+                   #username="ngModel"
+                   type="text" 
+                   class="form-control" 
+                   id="username" 
+                   name="username" 
+                   required
+                   minlength="3"
+                   maxlength="32">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+              <div *ngIf="username.errors.required">
+                Username is required.
+              </div>
+              <div *ngIf="username.errors.minlength">
+                Username must be at least 3 characters long.
+              </div>
+              <div *ngIf="username.errors.maxlength">
+                Username must not be longer than 32 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input [(ngModel)]="formData.email" 
+                   #email="ngModel"
+                   type="email" 
+                   class="form-control" 
+                   id="email" 
+                   name="email" 
+                   required
+                   pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{1,}([.][a-zA-Z]{1,}|[.][\w-]{2,}[.][a-zA-Z]{1,})$"
+                   minlength="4"
+                   maxlength="32">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+              <div *ngIf="email.errors.required">
+                Email is required.
+              </div>
+              <div *ngIf="email.errors.pattern">
+                Email format is incorrect.
+              </div>
+              <div *ngIf="email.errors.minlength">
+                Email must be at least 4 characters long.
+              </div>
+              <div *ngIf="email.errors.maxlength">
+                Email must not be longer than 32 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input [(ngModel)]="formData.password" 
+                   #password="ngModel"
+                   type="password" 
+                   class="form-control" 
+                   id="password" 
+                   name="password" 
+                   required
+                   minlength="4"
+                   maxlength="32">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+              <div *ngIf="password.errors.required">
+                Password is required.
+              </div>
+              <div *ngIf="password.errors.minlength">
+                Password must be at least 4 characters long.
+              </div>
+              <div *ngIf="password.errors.maxlength">
+                Password must not be longer than 32 characters.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="passwordConfirmation">Confirm Password</label>
+            <input [(ngModel)]="formData.passwordConfirmation" 
+                   #passwordConfirmation="ngModel"
+                   type="password" 
+                   class="form-control" 
+                   id="passwordConfirmation" 
+                   name="passwordConfirmationn" 
+                   required
+                   minlength="4"
+                   maxlength="32">
+            <div *ngIf="passwordConfirmation.invalid && (passwordConfirmation.dirty || passwordConfirmation.touched)" class="alert alert-danger">
+              <div *ngIf="passwordConfirmation.errors.required">
+                Confirm Password is required.
+              </div>
+              <div *ngIf="passwordConfirmation.errors.minlength">
+                Confirm Password must be at least 4 characters long.
+              </div>
+              <div *ngIf="passwordConfirmation.errors.maxlength">
+                Confirm Password must not be longer than 32 characters.
+              </div>
+            </div>
+          </div>
+
+          <button [disabled]="!registerForm.form.valid" 
+                  (click)="register()" 
+                  type="submit" 
+                  class="btn btn-bnb">
+            Submit
+            </button>
+        </form>
+
+        <div class="alert alert-danger mt-3" *ngIf="errors.length > 0">
+          <p *ngFor="let error of errors">{{error.detail}}</p>
+        </div>
+
+      </div>
+      <div class="col-md-6 ml-auto">
+        <div class="image-container">
+          <h2 class="catchphrase">As our member, you have access to the most awesome homes in the world.</h2>
+          <div class="img-fluid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
