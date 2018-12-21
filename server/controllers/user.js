@@ -17,7 +17,7 @@ exports.auth = async function (req, res) {
     if (!user) {
       return res.status(422).send({ errors: [{ 
         title: "Invalid user", 
-        detail: "User does not exist." }]});
+        detail: "Account does not exist. Please register a new account." }]});
     }
 
     if (user.isSamePassword(password)) {
@@ -40,16 +40,16 @@ exports.auth = async function (req, res) {
 exports.register = async function (req, res) {
   const { username, email, password, passwordConfirmation } = req.body;
 
-  if (!email || !password) {
+  if (!username || !email || !password) {
     return res.status(422).send({ errors: [{ 
       title: "Data missing", 
-      detail: "Provide email and password." }]});
+      detail: "Provide username, email, and password." }]});
   }
 
-  if (password != passwordConfirmation) {
+  if (password !== passwordConfirmation) {
     return res.status(422).send({ errors: [{ 
       title: "Invalid password", 
-      detail: "Password does not match." }]});
+      detail: "Password does not match with confirmation." }]});
   }
 
   try {

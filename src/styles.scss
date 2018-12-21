@@ -6,6 +6,11 @@ html, body, p {
   color: $main-text-color;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
+// ====== Rent styles =========================================================
 .apartment {
   color: #A72DA3;
 }
@@ -16,4 +21,66 @@ html, body, p {
 
 .house {
  color: #BF1818;
+}
+
+// ====== Error message =======================================================
+.alert {
+  p {
+    margin: 0;
+  }
+}
+
+// ====== Form styles =========================================================
+.bnb-form {
+  color: $main-text-color;
+
+  form {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  .image-container {
+    position: relative;
+
+    .img-fluid {
+      width: 100%;
+      border-radius: 5px;
+      height: 600px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  .btn-bnb {
+    background-color: $main-color;
+    border-color: $main-color;
+    color: white;
+    // padding: 15px 30px;
+    font-size: 20px;
+
+    &:hover, &:focus, &:active {
+      background-color: $main-color !important;
+      border-color: $main-color !important;
+    }
+  }
+
+  .catchphrase {
+    text-align: center;
+    font-size: 42px;
+    position: absolute;
+    color: #F1F1F1;
+    padding: 40px;
+    background-color: rgba(0,0,0, 0.5);
+    margin-top: 50px;
+    letter-spacing: 1px;
+  }
 }
