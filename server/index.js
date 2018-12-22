@@ -21,6 +21,7 @@ app.use(express.json());
 // ===== ROUTES ===============================================================
 app.use("/api/v1/rentals", require("./routes/rentals"));
 app.use("/api/v1/users", require("./routes/users"));
+app.use("/api/v1/bookings", require("./routes/bookings"));
 
 
 // ===== LISTEN ===============================================================
