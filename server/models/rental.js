@@ -10,7 +10,8 @@ const rentalSchema = new mongoose.Schema({
   shared: Boolean,
   description: { type: String, required: true },
   dailyRate: Number,
-  user: { type: mongoose.SchemaTypes.ObjectId, ref: "User" }
+  user: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
+  bookings: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Booking" }]
 }, { 
   // Automatically add createdAt and updatedAt properties
   timestamps: true

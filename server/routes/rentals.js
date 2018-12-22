@@ -1,23 +1,9 @@
 const router = require("express").Router(),
-      Rental = require("../models/rental"),
-      UserController = require("../controllers/user"),
-      { normalizeErrors } = require("../helpers/mongoose");
+      RentalController = require("../controllers/rental"),
+      UserController = require("../controllers/user");
 
-// INDEX
-router.get("/", async (req, res) => {
-  const rentals = await Rental.find();
-  res.json(rentals);
-});
+router.get("/", RentalController.getRentals);
 
-// SHOW
-router.get("/:id", (req, res) => {
-  Rental.findById(req.params.id).exec()
-    .then(rental => {
-      res.json(rental);
-    })
-    .catch(err => {
-      res.status(422).send({ errors: normalizeErrors(err.errors) });
-    })
-});
+router.get("/:id", UserController.authMiddleware, RentalController.getRentalById);
 
 module.exports = router;
