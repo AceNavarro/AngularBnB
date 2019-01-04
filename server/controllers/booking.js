@@ -42,7 +42,7 @@ exports.createBooking = async function(req, res) {
     await booking.save();
 
     await Rental.findOneAndUpdate({ _id: foundRental._id }, { $push: { bookings: booking } });
-    await User.findOneAndUpdate({ _id: booking._id }, { $push: { bookings: booking } });
+    res.locals.user = await User.findOneAndUpdate({ _id: user._id }, { $push: { bookings: booking } }, { new: true });
 
     res.json({
       startAt: booking.startAt, 

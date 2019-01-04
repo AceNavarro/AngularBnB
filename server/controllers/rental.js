@@ -1,4 +1,5 @@
 const Rental = require("../models/rental"),
+      User = require("../models/user"),
       { normalizeErrors } = require("../helpers/mongoose");
 
 exports.getRentals = async (req, res) => {
@@ -39,6 +40,20 @@ exports.getRentalById = async (req, res) => {
       .populate("user", "username -_id");
     res.json(rental);
   } catch(err) {
+    res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+
+exports.createRental = async (req, res) => {
+  try {
+    const rental = new Rental(req.body);
+    const user = res.locals.user;
+    rental.user = user;
+    await rental.save();
+    res.locals.user = await User.findOneAndUpdate({ _id: user._id }, { $push: { rentals: rental } }, { new: true });
+    res.json({ id: rental._id });
+  } catch (err) {
     res.status(422).send({ errors: normalizeErrors(err.errors) });
   }
 };
