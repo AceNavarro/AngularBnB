@@ -37,3 +37,68 @@
     font-weight: 300;
   }
 }
+
+// Modal
+.modal-body {
+  .title {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  span {
+    font-style: normal;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  
+  p {
+    margin: 0;
+  }
+}
+
+.modal-error {
+  margin: 16px;
+}
+
+.modal-footer {
+  .btn-bnb {
+    background-color: $main-color;
+    border-color: $main-color;
+    color: white;
+    font-size: 20px;
+  
+    &:hover, &:focus, &:active {
+      background-color: $main-color !important;
+      border-color: $main-color !important;
+    }
+  }
+}
+
+
+//  Date Picker
+
+.daterangepicker {
+  td {
+    &.in-range {
+      background-color: #FFA9A9 !important
+    }
+
+    &.active {
+      background-color: $main-color !important;
+      
+      &:hover {
+        background-color: $main-color !important;
+      }
+    }
+
+    &.off {
+      background-color: white !important;
+      color: #999 !important;
+
+      &:hover {
+        background-color: white !important;
+        color: #999 !important;
+      }
+    }
+  }
+}
