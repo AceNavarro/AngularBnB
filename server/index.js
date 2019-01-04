@@ -1,7 +1,7 @@
 const express = require("express"),
       mongoose = require("mongoose"),
       config = require("./config/dev"),
-      FakeDb = require("./models/fake-db");
+      FakeDb = require("./fake-db");
 
 
 // ===== DATABASE =============================================================
