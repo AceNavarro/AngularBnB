@@ -10,7 +10,7 @@ mongoose.connect(config.DB_URI, {
     useCreateIndex: true 
   })
   .then(() => {
-    new FakeDb().seedDb();
+    // new FakeDb().seedDb();
   });
 
 // ===== APP SETUP ============================================================
