@@ -16,6 +16,7 @@ import { RentalService } from './shared/rental.service';
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { HelperService } from '../common/service/helper.service';
 import { BookingService } from '../booking/shared/booking.service';
+import { RentalSearchComponent } from './rental-search/rental-search.component';
 
 const routes: Routes = [
   { 
@@ -23,7 +24,8 @@ const routes: Routes = [
     component: RentalComponent,
     children: [
       { path: "", component: RentalListComponent },
-      { path: ":rentalId", component: RentalDetailComponent, canActivate: [AuthGuard] }
+      { path: ":rentalId", component: RentalDetailComponent, canActivate: [AuthGuard] },
+      { path: ":search/homes", component: RentalSearchComponent }
     ]
   }
 ];
@@ -34,7 +36,8 @@ const routes: Routes = [
     RentalListComponent,
     RentalListItemComponent,
     RentalDetailComponent,
-    RentalDetailBookingComponent
+    RentalDetailBookingComponent,
+    RentalSearchComponent
   ],
   imports: [
     CommonModule,
