@@ -15,4 +15,8 @@ export class RentalService {
   public getRentalById(rentalId: string) : Observable<any> {
     return this.http.get("api/v1/rentals/" + rentalId);
   }
+
+  public searchRentals(search: string) : Observable<any> {
+    return this.http.get("api/v1/rentals?search=" + search);
+  }
 }

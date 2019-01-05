@@ -4,13 +4,6 @@
   padding: 20px;
   margin-bottom: 40px;
 
-
-  .bnb-search {
-    height: 50px;
-    width: 300px;
-  }
-
-
   .navbar-brand {
     margin-right: 30px;
     font-size: 30px;
@@ -19,16 +12,23 @@
     font-weight: 500;
   }
 
-
   .nav-item {
     font-size: 14px;
   }
+}
 
+
+.search-container {
+
+  .bnb-search {
+    height: 50px;
+    width: 300px;
+  }
 
   .btn-bnb-search {
     border-color: $main-color;
     color: $main-color;
-
+    height: 50px;
 
     &:hover, &:focus, &:active {
       background-color: transparent;

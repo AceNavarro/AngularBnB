@@ -18,4 +18,12 @@ export class HeaderComponent {
     this.router.navigate(["/login"]);
   }
 
+  search(keywords: string) {
+    if (keywords) {
+      this.router.navigate([`/rentals/${keywords}/homes`]);
+    } else {
+      this.router.navigate(["/rentals"]);
+    }
+  }
+
 }
