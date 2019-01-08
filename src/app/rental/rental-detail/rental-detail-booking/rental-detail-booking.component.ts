@@ -8,6 +8,7 @@ import { BookingService } from 'src/app/booking/shared/booking.service';
 import { HelperService } from 'src/app/common/service/helper.service';
 import { Booking } from 'src/app/booking/shared/booking.model';
 import { Rental } from '../../shared/rental.model';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -37,7 +38,8 @@ export class RentalDetailBookingComponent implements OnInit {
     isInvalidDate: this.isInvalidDate.bind(this)
   };
 
-  constructor(private bookingService: BookingService,
+  constructor(private auth: AuthService,
+              private bookingService: BookingService,
               private helperService: HelperService,
               private modalService: NgbModal,
               private toastr: ToastrService) { }

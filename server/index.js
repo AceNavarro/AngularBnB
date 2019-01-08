@@ -7,7 +7,8 @@ const express = require("express"),
 // ===== DATABASE =============================================================
 mongoose.connect(config.DB_URI, {
     useNewUrlParser: true, 
-    useCreateIndex: true 
+    useCreateIndex: true,
+    useFindAndModify: false
   })
   .then(() => {
     // new FakeDb().seedDb();
