@@ -1,22 +1,24 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/rentals">Homebnb</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-    aria-expanded="false" aria-label="Toggle navigation">
+  aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <a class="navbar-brand ml-auto mr-auto" routerLink="/rentals">Homebnb</a>
+
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav mr-auto">
+    <div class="navbar-nav ml-lg-3 mr-auto">
       <div class="form-inline search-container">
         <input #keywords
                (keyup.enter)="search(keywords.value)"
-               class="form-control bnb-search mr-sm-2" 
+               class="form-control bnb-search mr-2" 
                type="search" 
                placeholder="Search" 
                aria-label="Search">
         <button (click)="search(keywords.value)"
-                class="btn btn-outline-success btn-bnb-search my-2 my-sm-0" 
+                class="btn btn-outline-success btn-bnb-search my-2" 
                 type="button">Search</button>
       </div>
+
     </div>
     <div class="navbar-nav ml-auto">
       <ng-container *ngIf="!auth.isAuthenticated()">
@@ -24,7 +26,15 @@
         <a class="nav-item nav-link" routerLink="/register">Register</a>
       </ng-container>
       <ng-container *ngIf="auth.isAuthenticated()">
-        <a class="nav-item nav-link">{{auth.getUsername()}}</a>
+          <a class="nav-item nav-link">{{auth.getUsername()}}</a>
+          <div class="nav-item dropdown clickable">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Owner Section
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" routerLink="/rentals/new">Create Rental</a>
+            </div>
+          </div>
         <a (click)="logout()" class="nav-item nav-link clickable">Logout</a>
       </ng-container>
     </div>

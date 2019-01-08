@@ -66,19 +66,6 @@ html, body, p {
     font-size: 12px;
   }
 
-  .btn-bnb {
-    background-color: $main-color;
-    border-color: $main-color;
-    color: white;
-    // padding: 15px 30px;
-    font-size: 20px;
-
-    &:hover, &:focus, &:active {
-      background-color: $main-color !important;
-      border-color: $main-color !important;
-    }
-  }
-
   .catchphrase {
     text-align: center;
     font-size: 42px;
@@ -88,5 +75,17 @@ html, body, p {
     background-color: rgba(0,0,0, 0.5);
     margin-top: 50px;
     letter-spacing: 1px;
+  }
+}
+
+.btn-bnb {
+  background-color: $main-color;
+  border-color: $main-color;
+  color: white;
+  font-size: 20px;
+
+  &:hover, &:focus, &:active {
+    background-color: $main-color !important;
+    border-color: $main-color !important;
   }
 }
