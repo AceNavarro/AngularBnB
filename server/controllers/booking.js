@@ -54,6 +54,17 @@ exports.createBooking = async function(req, res) {
 };
 
 
+exports.getUserBookings = async (req, res) => {
+  try {
+    const user = res.locals.user;
+    const bookings = await Booking.find({ user }).populate("rental");
+    res.json(bookings);
+  } catch (err) {
+    res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+
 function isValidBookingDates(proposedBooking, rental) {
   if (!rental.bookings || rental.bookings.length == 0) {
     return true;

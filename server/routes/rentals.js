@@ -4,8 +4,12 @@ const router = require("express").Router(),
 
 router.get("/", RentalController.getRentals);
 
+router.get("/manage", UserController.authMiddleware, RentalController.getUserRentals);
+
 router.get("/:id", RentalController.getRentalById);
 
 router.post("/", UserController.authMiddleware, RentalController.createRental);
+
+router.delete("/:id", UserController.authMiddleware, RentalController.deleteRental)
 
 module.exports = router;
