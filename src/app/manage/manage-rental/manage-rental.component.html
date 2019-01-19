@@ -1,0 +1,49 @@
+<section id="userRentals">
+  <h1 class="page-title">My Rentals</h1>
+  <div class="row">
+    <ng-container *ngIf="rentals && rentals.length > 0">
+      <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch" *ngFor="let rental of rentals; index as index">
+        <div class="card text-center w-100 shadow">
+
+          <div class="card-header">
+            <div class="{{ rental.category }}">
+              {{ rental.category }} &#183; {{ rental.city | titlecase }}
+            </div>
+          </div>
+
+          <div class="card-block">
+            <h4 class="card-title">{{ rental.title }}</h4> 
+            <a class="btn btn-bnb-outline" routerLink="/rentals/{{rental._id}}">Go to Rental</a>
+            <span *ngIf="rental.bookings.length > 0"> 
+              <bnb-manage-rental-booking [bookings]="rental.bookings" class="ml-2"></bnb-manage-rental-booking>
+            </span>
+          </div>
+          <div class="card-footer text-muted">
+              <p>Created at {{ rental.createdAt | date : 'y/MM/dd' }}</p>
+              <button (click)="rentalDeleteIndex = rentalDeleteIndex !== undefined ? undefined : index"
+                      type="button" 
+                      class="btn btn-bnb btn-delete">
+                <fa-icon [icon]="faTrashAlt"></fa-icon>
+              </button>
+              <div *ngIf="rentalDeleteIndex === index" class="delete-confirm-footer">
+                <hr>
+                <span class="confirm-message">Do you confirm delete?</span>
+                <button (click)="rentalDeleteIndex = undefined"
+                        class="btn btn-bnb-outline ml-2">No</button>
+                <button (click)="deleteRental()" 
+                        class="btn btn-bnb-outline ml-2">Yes</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="col-md-8" *ngIf="rentals && rentals.length === 0"> 
+      <div class="alert alert-warning shadow">
+        You dont have any rentals currenty created. If you want advertised your property
+        please follow this link.
+        <a class="btn btn-bnb" routerLink="/rentals/new">Create Rental</a> 
+      </div>
+    </div>
+  </div>
+</section>
+  

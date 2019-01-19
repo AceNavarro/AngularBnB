@@ -3,7 +3,7 @@
   aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand ml-auto mr-auto" routerLink="/rentals">Homebnb</a>
+  <a class="navbar-brand ml-auto mr-auto" routerLink="/rentals">Homebnb <img src="favicon.ico" alt="Logo"></a>
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-lg-3 mr-auto">
@@ -33,6 +33,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" routerLink="/rentals/new">Create Rental</a>
+              <a class="dropdown-item" routerLink="/manage/booking">Manage Bookings</a>
+              <a class="dropdown-item" routerLink="/manage/rental">Manage Rentals</a>
             </div>
           </div>
         <a (click)="logout()" class="nav-item nav-link clickable">Logout</a>
