@@ -13,12 +13,20 @@ export class RentalService {
     return this.http.post("api/v1/rentals", newRental);
   }
 
+  public deleteRental(rentalId: string) : Observable<any> {
+    return this.http.delete("api/v1/rentals/" + rentalId);
+  }
+
   public getRentals() : Observable<any> {
     return this.http.get("api/v1/rentals");
   }
 
   public getRentalById(rentalId: string) : Observable<any> {
     return this.http.get("api/v1/rentals/" + rentalId);
+  }
+
+  public getUserRentals() : Observable<any> {
+    return this.http.get("api/v1/rentals/manage");
   }
 
   public searchRentals(search: string) : Observable<any> {

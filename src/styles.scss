@@ -89,3 +89,16 @@ html, body, p {
     border-color: $main-color !important;
   }
 }
+
+.btn-bnb-outline {
+  background-color: transparent;
+  color: $main-color;
+  border: 1px solid $main-color !important;
+  font-size: 12px !important;
+  padding: 10px 15px !important;
+
+  &:hover {
+    background-color: $main-color !important;
+    color: white !important;
+  }
+}

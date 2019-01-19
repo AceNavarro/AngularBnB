@@ -44,11 +44,13 @@ exports.deleteRental = async (req, res) => {
     }
 
     await Rental.deleteOne({ _id: rentalId });
-    await Booking.deleteMany({ _id: { $in: rental.bookings }})
+    // No need to delete the bookings associated to the deleted rental,
+    // so that a user still have data of all bookings even if rental has been deleted.
+    // await Booking.deleteMany({ _id: { $in: rental.bookings }})
     res.locals.user = await User.findOneAndUpdate({ _id: user._id }, { 
       $pull: { 
-        rentals: rental._id,
-        bookings: { $in: rental.bookings }
+        rentals: rental._id
+        // bookings: { $in: rental.bookings }
       }}, 
       { new: true });
 
