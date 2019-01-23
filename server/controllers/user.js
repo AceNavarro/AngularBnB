@@ -1,6 +1,6 @@
 const User = require("../models/user"),
       jwt = require("jsonwebtoken"),
-      config = require("../config/dev"),
+      config = require("../config"),
       { normalizeErrors } = require("../helpers/mongoose");
 
 

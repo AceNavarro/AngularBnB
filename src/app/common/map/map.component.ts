@@ -25,6 +25,7 @@ export class MapComponent {
         this.detectorRef.detectChanges();
        }, err => {
         this.isLocationError = true;
+        this.detectorRef.detectChanges();
         console.error(err)
        });
   }
