@@ -1,4 +1,4 @@
-# Park Discovery
+# Homebnb / AngularBnB
 > A fictional full stack web application using MEAN stack (MongoDB, Express, Angular, Node) that provides functions and services similar to the popular airbnb.com. It is inspired from the Udemy course - [Angular 6 (Angular 2+) & React 16 - The Complete App Guide by Filip Jerga](https://www.udemy.com/practical-angular-react-node-airbnb-style-application/)
 
 ![rentals-page](./screenshots/rentals.png)
