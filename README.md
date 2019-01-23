@@ -27,11 +27,13 @@ To see the app in action, go to [https://angular-bnb.herokuapp.com](https://angu
 
   * Create, show, edit and delete rentals and reviews
 
-  * Upload rentals photos using Amazon S3
-
   * Display rental location on Google Maps
   
   * Create and show rental bookings
+  
+* Upload rentals photos using Amazon S3
+
+* Payment feature using Stripe
 
 * Flash messages responding to users' interaction with the app
 
@@ -68,8 +70,8 @@ yarn install
 * [Angular 7](https://angular.io)
 * [Google Maps APIs](https://developers.google.com/maps/)
 * [Bootstrap](https://getbootstrap.com)
-* [Angular Datepicker] (https://github.com/fragaria/angular-daterangepicker)
-* [Toastr] (https://www.npmjs.com/package/ngx-toastr)
+* [Angular Datepicker](https://github.com/fragaria/angular-daterangepicker)
+* [Toastr](https://www.npmjs.com/package/ngx-toastr)
 
 ### Back-end
 
