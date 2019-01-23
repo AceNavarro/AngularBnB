@@ -10,8 +10,11 @@ import { Booking } from 'src/app/booking/shared/booking.model';
 export class ManageRentalBookingComponent implements OnInit {
 
   @Input() bookings: Booking[];
+  modalService: NgbModal;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modal: NgbModal) {
+    this.modalService = modal;
+  }
 
   ngOnInit() {
   }

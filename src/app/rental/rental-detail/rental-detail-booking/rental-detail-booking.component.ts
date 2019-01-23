@@ -23,6 +23,7 @@ export class RentalDetailBookingComponent implements OnInit {
   @ViewChild(DaterangePickerComponent)
   private picker: DaterangePickerComponent;
 
+  authService: AuthService;
   bookedOutDates: string[] = [];
   errors: any[] = [];
   newBooking: Booking;
@@ -42,7 +43,9 @@ export class RentalDetailBookingComponent implements OnInit {
               private bookingService: BookingService,
               private helperService: HelperService,
               private modalService: NgbModal,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService) { 
+    this.authService = auth;
+  }
 
   ngOnInit() {
     this.initBooking();
