@@ -19,20 +19,21 @@
             </span>
           </div>
           <div class="card-footer text-muted">
-              <p>Created at {{ rental.createdAt | date : 'y/MM/dd' }}</p>
-              <button (click)="rentalDeleteIndex = rentalDeleteIndex !== undefined ? undefined : index"
-                      type="button" 
-                      class="btn btn-bnb btn-delete">
-                <fa-icon [icon]="faTrashAlt"></fa-icon>
-              </button>
-              <div *ngIf="rentalDeleteIndex === index" class="delete-confirm-footer">
-                <hr>
-                <span class="confirm-message">Do you confirm delete?</span>
-                <button (click)="rentalDeleteIndex = undefined"
-                        class="btn btn-bnb-outline ml-2">No</button>
-                <button (click)="deleteRental()" 
-                        class="btn btn-bnb-outline ml-2">Yes</button>
-              </div>
+            <p>Created at {{ rental.createdAt | date : 'y/MM/dd' }}</p>
+            <button (click)="rentalDeleteIndex = rentalDeleteIndex !== undefined ? undefined : index"
+                    type="button" 
+                    class="btn btn-bnb btn-delete">
+              Delete
+            </button>
+            <a class="btn btn-warning btn-edit" routerLink="/rentals/{{rental._id}}/edit">Edit</a> 
+            <div *ngIf="rentalDeleteIndex === index" class="delete-confirm-footer">
+              <hr>
+              <span class="confirm-message">Do you confirm delete?</span>
+              <button (click)="rentalDeleteIndex = undefined"
+                      class="btn btn-bnb-outline btn-confirm ml-2">No</button>
+              <button (click)="deleteRental()" 
+                      class="btn btn-bnb-outline btn-confirm ml-2">Yes</button>
+            </div>
           </div>
         </div>
       </div>

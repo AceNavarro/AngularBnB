@@ -32,4 +32,12 @@ export class RentalService {
   public searchRentals(search: string) : Observable<any> {
     return this.http.get("api/v1/rentals?search=" + search);
   }
+
+  public updateRental(rentalId: string, rental: any) : Observable<any> {
+    return this.http.patch("api/v1/rentals/" + rentalId, rental);
+  }
+
+  public verifyRentalUser(rentalId: string) : Observable<any> {
+    return this.http.get("api/v1/rentals/" + rentalId + "/verify-user");
+  }
 }
