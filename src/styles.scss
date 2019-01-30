@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "variables";
+@import "rental-detail";
 
 html, body, p {
   color: $main-text-color;
@@ -78,6 +79,9 @@ html, body, p {
   }
 }
 
+
+// ====== Buttons =============================================================
+
 .btn-bnb {
   background-color: $main-color;
   border-color: $main-color;
@@ -100,5 +104,28 @@ html, body, p {
   &:hover {
     background-color: $main-color !important;
     color: white !important;
+  }
+}
+
+
+// ====== Editable Components =================================================
+
+.editable-component {
+  input {
+    max-width: 100%;
+  }
+
+  input[type="number"] {
+    width: 60px;
+  }
+
+  .btn {
+    &.btn-editable {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: 5px;
+      color: white;
+      font-size: 12px;
+    }
   }
 }

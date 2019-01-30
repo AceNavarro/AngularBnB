@@ -115,6 +115,45 @@ exports.getUserRentals = async (req, res) => {
 };
 
 
+exports.updateRental = async (req, res) => {
+  try {
+    const rentalData = req.body;
+    const user = res.locals.user;
+    const rental = await Rental.findById(req.params.id).populate("user");
+
+    if (rental.user.id !== user.id) {
+      return res.status(422).send({ errors: [{ 
+        title: "Invalid user", 
+        detail: "Cannot update a rental that belongs to another user." }]});
+    }
+
+    rental.set(rentalData);
+    await rental.save();
+    res.status(200).send(rental);
+  } catch (err) {
+    res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+
+exports.verifyUser = async (req, res) => {
+  try {
+    const user = res.locals.user;
+    const rental = await Rental.findById(req.params.id).populate("user");
+  
+    if (rental.user.id !== user.id) {
+      return res.status(422).send({ errors: [{ 
+        title: "Invalid user", 
+        detail: "You are not the owner of the specified rental." }]});
+    }
+    
+    res.json({ status: "verified" })
+  } catch (err) {
+    res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+}
+
+
 // Escapes a regex input string to make safe from external attacks.
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
