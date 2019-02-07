@@ -1,0 +1,28 @@
+<div [ngStyle]="style" class="editable-component">
+
+  <img *ngIf="!isCroppedImageLoaded"
+       [src]="entity[entityField]"
+       class="shadow mb-3">
+  
+  <div class="bnb-form mb-3">
+    <bnb-image-upload *ngIf="isActiveInput"
+                      (imageUploaded)="handleImageUploaded($event)"
+                      (imageError)="handleImageError()"
+                      (imageLoadedToContainer)="handleImageLoaded()"
+                      (cropperCancelled)="handleCropperCancelled()">
+    </bnb-image-upload>
+
+    <label *ngIf="!isActiveInput"
+            (click)="isActiveInput = true"
+            class="btn btn-warning text-white ml-0">
+      Edit
+    </label>
+
+    <label *ngIf="isActiveInput && !isCroppedImageLoaded"
+            (click)="cancelUpdate()"
+            class="btn btn-secondary ml-2">
+      Cancel
+    </label>
+  </div>
+
+</div>

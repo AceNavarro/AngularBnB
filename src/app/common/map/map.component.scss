@@ -7,24 +7,24 @@ agm-map {
 
 @include media-breakpoint-only(sm) {
   agm-map {
-    height: 330px;
+    height: 340px;
   }
 }
 
 @include media-breakpoint-only(md) {
   agm-map {
-    height: 220px;
+    height: 247px;
   }
 }
 
 @include media-breakpoint-only(lg) {
   agm-map {
-    height: 300px;
+    height: 337px;
   }
 }
 
 @include media-breakpoint-only(xl) {
   agm-map {
-    height: 360px;
+    height: 405px;
   }
 }

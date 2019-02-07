@@ -8,6 +8,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 import { UcWordsPipe } from 'ngx-pipes'
 
 import { EditableModule } from '../common/components/editable/editable.module';
+import { ImageUploadModule } from '../common/components/image-upload/image-upload.module';
 
 import { RentalComponent } from './rental.component';
 import { RentalListComponent } from './rental-list/rental-list.component';
@@ -18,11 +19,12 @@ import { RentalSearchComponent } from './rental-search/rental-search.component';
 import { RentalCreateComponent } from './rental-create/rental-create.component';
 import { RentalUpdateComponent } from './rental-update/rental-update.component';
 
-import { RentalService } from './shared/rental.service';
 import { AuthGuard } from '../auth/shared/auth.guard';
+import { RentalGuard } from './shared/rental.guard';
+
+import { RentalService } from './shared/rental.service';
 import { HelperService } from '../common/service/helper.service';
 import { BookingService } from '../booking/shared/booking.service';
-import { RentalGuard } from './shared/rental.guard';
 
 const routes: Routes = [
   { 
@@ -56,7 +58,8 @@ const routes: Routes = [
     MapModule,
     Daterangepicker,
     FormsModule,
-    EditableModule
+    EditableModule,
+    ImageUploadModule
   ],
   providers: [
     RentalService,
