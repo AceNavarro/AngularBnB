@@ -2,12 +2,17 @@
   <div class="upper-section">
     <div class="row">
       <div class="col-md-6">
-        <img src="{{rental.image}}" alt="">
+        <bnb-editable-image [(entity)]="rental"
+                            [field]="'image'"
+                            (entityUpdated)="updateRental(rental._id, $event)">
+        </bnb-editable-image>
       </div>
       <div class="col-md-6">
-        <bnb-map [location]="rental.street + ', ' + rental.city"
-                 [locationSubject]="locationSubject">
-        </bnb-map>
+        <div class="shadow">
+          <bnb-map [location]="rental.street + ', ' + rental.city"
+                   [locationSubject]="locationSubject">
+          </bnb-map>
+        </div>
       </div>
     </div>
   </div>

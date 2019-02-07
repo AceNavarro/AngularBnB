@@ -89,8 +89,8 @@ html, body, p {
   font-size: 20px;
 
   &:hover, &:focus, &:active {
-    background-color: $main-color !important;
-    border-color: $main-color !important;
+    background-color: $main-color-dark !important;
+    border-color: $main-color-dark !important;
   }
 }
 

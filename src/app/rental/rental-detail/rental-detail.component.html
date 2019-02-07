@@ -2,10 +2,12 @@
   <div class="upper-section">
     <div class="row">
       <div class="col-md-6">
-        <img src="{{rental.image}}" alt="">
+        <img src="{{rental.image}}" class="shadow" alt="Rental Image">
       </div>
       <div class="col-md-6">
-        <bnb-map [location]="rental.street + ', ' + rental.city"></bnb-map>
+        <div class="shadow">
+          <bnb-map [location]="rental.street + ', ' + rental.city"></bnb-map>
+        </div>
       </div>
     </div>
   </div>
