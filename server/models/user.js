@@ -25,6 +25,8 @@ const userSchema = new mongoose.Schema({
     minlength: [4, "Too short, min is 4 characters."],
     maxlength: [32, "Too long, max is 32 characters."] ,
   },
+  stripeCustomerId: String,
+  revenue: Number,
   rentals: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Rental" }],
   bookings: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Booking" }]
 });

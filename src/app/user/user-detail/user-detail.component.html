@@ -1,0 +1,140 @@
+<div *ngIf="user" class="container bootstrap snippet">
+  <div class="row">
+    <div class="col-sm-9">
+      <h1>{{ user.username }}</h1>
+    </div>
+    <div class="col-sm-3">
+      <h4 *ngIf="user.revenue">Revenue: ${{ user.revenue.toFixed(2) }}</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <!--left col-->
+      <div class="text-center">
+        <img src="https://api.adorable.io/avatars/285/abott@adorable.png" class="img-circle img-thumbnail" alt="avatar">
+      </div>
+      <ul class="list-group mt-3">
+        <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong>Rentals</strong></span> {{ user.rentals ? user.rentals.length : 0  }}</li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong>Bookings</strong></span> {{ user.bookings ? user.bookings.length : 0  }}</li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong>Reviews</strong></span> {{ user.bookings ? user.bookings.length : 0  }}</li>
+      </ul>
+      <div class="panel panel-default mt-3 mb-4">
+        <div class="panel-heading">Social Media</div>
+        <div class="panel-body">
+          <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i
+            class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+        </div>
+      </div>
+    </div>
+    <!--/col-3-->
+    <div class="col-sm-9">
+      <div class="nav nav-tabs">
+        <a class="nav-item nav-link active" data-toggle="tab" href="#home">Home</a>
+        <a class="nav-item nav-link" data-toggle="tab" href="#settings">Settings</a>
+      </div>
+      <div class="tab-content mt-3">
+        <div class="tab-pane active" id="home">
+          <form class="form">
+            <div class="form-group">
+              <div class="col-xs-6">
+                <label for="username">
+                  <h4>Username</h4>
+                </label>
+                <input [(ngModel)]="user.username" 
+                       type="text" 
+                       class="form-control" 
+                       name="username" 
+                       id="username" 
+                       placeholder="Username"
+                       title="Enter your username.">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-6">
+                <label for="email">
+                  <h4>Email</h4>
+                </label>
+                <input [(ngModel)]="user.email" 
+                       type="email" 
+                       class="form-control" 
+                       name="email" 
+                       id="email" 
+                       placeholder="you@email.com"
+                       title="Enter your email.">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12">
+                <br>
+                <button class="btn btn-lg btn-bnb" 
+                        data-toggle="modal" 
+                        data-target="#saveModal">
+                  Save
+                </button>
+                <button (click)="resetUser()" class="btn btn-lg btn-secondary ml-3">Reset</button>
+
+                <!-- Save Modal -->
+                <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="saveModalLabel">Save User Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>You will need to login again in order for the changes to take effect. Do you want to continue?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-bnb" data-dismiss="modal" (click)="saveUser()" >Yes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--/tab-pane-->
+        <div class="tab-pane" id="settings">
+          <form class="form">
+            <div class="form-group">
+              <div class="col-xs-6">
+                <label for="option1">
+                  <h4>Option 1</h4>
+                </label>
+                <input type="text" class="form-control" name="option1" id="option1" placeholder="Option 1"
+                  title="Option 1">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-6">
+                <label for="option2">
+                  <h4>Option 2</h4>
+                </label>
+                <input type="text" class="form-control" name="option2" id="option2" placeholder="Option 1"
+                  title="Option 2">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12">
+                <br>
+                <button class="btn btn-lg btn-bnb">Save</button>
+                <button class="btn btn-lg btn-secondary ml-3">Reset</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--/tab-pane-->
+    </div>
+    <!--/tab-content-->
+  </div>
+  <!--/col-9-->
+</div>
+<!--/row-->

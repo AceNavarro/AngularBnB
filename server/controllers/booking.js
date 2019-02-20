@@ -1,12 +1,19 @@
 const Booking = require("../models/booking"),
       Rental = require("../models/rental"),
       User = require("../models/user"),
+      Payment = require("../models/payment"),
       moment = require("moment"),
+      config = require("../config"),
       { normalizeErrors } = require("../helpers/mongoose");
+
+const stripe = require("stripe")(config.STRIPE_SK);
+
+// Percentage of customer share. The remaining will be for the website owner.
+const CUSTOMER_SHARE = 0.9;
 
 
 exports.createBooking = async function(req, res) {
-  const { startAt, endAt, totalPrice, guests, days, rental } = req.body;
+  const { startAt, endAt, totalPrice, guests, days, rental, paymentToken } = req.body;
   const user = res.locals.user;
   const booking = new Booking({ startAt, endAt, totalPrice, guests, days });
   
@@ -39,13 +46,22 @@ exports.createBooking = async function(req, res) {
   try {
     booking.rental = foundRental;
     booking.user = user;
+    const { payment, err } = await createPayment(booking, foundRental.user, paymentToken);
+
+    if (err) {
+      return res.status(422).send({ errors: [{ 
+        title: "Invalid payment", 
+        detail: err }]});
+    }
+
+    booking.payment = payment;
     await booking.save();
 
     await Rental.findOneAndUpdate({ _id: foundRental._id }, { $push: { bookings: booking } });
     res.locals.user = await User.findOneAndUpdate({ _id: user._id }, { $push: { bookings: booking } }, { new: true });
 
     res.json({
-      startAt: booking.startAt, 
+      startAt: booking.startAt,
       endAt: booking.endAt
     });
   } catch (err) {
@@ -63,6 +79,40 @@ exports.getUserBookings = async (req, res) => {
     res.status(422).send({ errors: normalizeErrors(err.errors) });
   }
 };
+
+
+async function createPayment(booking, toUser, token) {
+  let fromUser = booking.user;
+
+  if (!fromUser.stripeCustomerId) {
+    const customer = await stripe.customers.create({
+      source: token.id,
+      email: fromUser.email
+    });
+    
+    if (customer) {
+      fromUser = await User.findOneAndUpdate({ _id: fromUser.id }, { $set: { stripeCustomerId: customer.id }}, { new: true });
+    } else {
+      return { err: "Cannot process payment!" };
+    }
+  }
+
+  const payment = new Payment({
+    fromUser,
+    fromStripeCustomerId: fromUser.stripeCustomerId,
+    toUser,
+    booking,
+    tokenId: token.id,
+    amount: booking.totalPrice * 100 * CUSTOMER_SHARE  // amount is multiplied by 100 because value is in cents
+  });
+
+  try {
+    const savedPayment = await payment.save();
+    return { payment: savedPayment };
+  } catch (err) {
+    return { err: err.message };
+  }
+}
 
 
 function isValidBookingDates(proposedBooking, rental) {

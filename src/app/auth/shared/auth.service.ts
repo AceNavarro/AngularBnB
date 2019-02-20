@@ -8,6 +8,7 @@ import * as moment from 'moment';
 class DecodedToken {
   exp: number = 0;
   username: string = "";
+  userId: string = "";
 }
 
 @Injectable()
@@ -55,12 +56,16 @@ export class AuthService {
     return moment().isBefore(this.getExpiration());
   }
 
-  getAuthToken(): string {
+  public getAuthToken(): string {
     return localStorage.getItem("bnb_auth");
   }
 
   public getUsername(): string {
     return this.decodedToken.username;
+  }
+
+  public getUserId(): string {
+    return this.decodedToken.userId;
   }
 
 }

@@ -7,7 +7,10 @@ const bookingSchema = new mongoose.Schema({
   days: { type: Number, required: true },
   guests: { type: Number, required: true },
   user: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
-  rental: { type: mongoose.SchemaTypes.ObjectId, ref: "Rental" }
+  rental: { type: mongoose.SchemaTypes.ObjectId, ref: "Rental" },
+  payment: { type: mongoose.SchemaTypes.ObjectId, ref: "Payment" },
+  status: { type: String, default: "pending" }
+
 }, { 
   // Automatically add createdAt and updatedAt properties
   timestamps: true

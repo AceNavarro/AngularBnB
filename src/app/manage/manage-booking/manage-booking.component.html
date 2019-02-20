@@ -1,7 +1,6 @@
 <section id="userBookings">
   <h1 class="page-title">My Bookings</h1>
   <div class="row">
-
      <ng-container *ngIf="bookings && bookings.length > 0">
       <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch" *ngFor="let booking of bookings">
         <div class="card text-center w-100 shadow">
@@ -35,6 +34,59 @@
       You have no bookings created. Go to rentals section and book your place today.
       <a class="btn btn-bnb my-2" routerLink="/rentals">Available Rentals</a> 
     </div>
+  </div>
 
+
+  <h1 class="page-title mt-3">My Rental Bookings</h1>
+  <div class="row">
+    <ng-container *ngIf="payments && payments.length > 0">
+      <div class="col-md-6 col-lg-4 d-md-flex align-items-stretch" *ngFor="let payment of payments">
+        <div class="card text-center w-100 shadow">
+          <div class="card-header">
+            <ng-container *ngIf="payment.booking && payment.booking.rental">
+              <div class="{{ payment.booking.rental.category }}">
+                {{ payment.booking.rental.category }} &#183; {{ payment.booking.rental.city | titlecase }}
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!payment.booking">
+              Declined Booking
+            </ng-container>
+            <ng-container *ngIf="payment.booking && !payment.booking.rental">
+              Deleted Rental
+            </ng-container>
+          </div>
+          <div class="card-block">
+            <ng-container *ngIf="payment.booking && payment.booking.rental">
+              <h4 class="card-title">{{ payment.booking.rental.title }} </h4>
+            </ng-container>
+            <p *ngIf="payment.booking" class="card-text booking-days"> {{ payment.booking.startAt | date : 'y/MM/dd' }} - {{ payment.booking.endAt | date : 'y/MM/dd' }} | {{ payment.booking.days }} days</p> 
+            <p class="card-text"><span>Amount: </span> <span class="booking-price-value">${{ (payment.amount / 100).toFixed(2) }}</span></p> 
+            <p *ngIf="payment.status !== 'declined'" class="card-text"><span>Status: </span> <span class="booking-price-value">{{ payment.status | titlecase }}</span></p> 
+            <p class="card-text booking-desc">Booking made by {{ payment.fromUser.username }}</p> 
+
+            <a *ngIf="payment.booking && payment.booking.rental" class="btn btn-bnb mt-3" routerLink="/rentals/{{ payment.booking.rental_id}}">Go to Rental</a>
+            
+          </div>
+          <div class="card-footer text-muted">
+            Created {{ payment.createdAt | date : 'y/MM/dd' }}
+
+            <div class="mt-2" *ngIf="payment.status === 'pending'">
+              <button class="btn btn-bnb-outline"
+                      (click)="acceptPayment(payment)">
+                Accept
+              </button>
+              <button class="btn btn-bnb-outline ml-3"
+                      (click)="declinePayment(payment)">
+                Decline
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="alert alert-warning shadow" *ngIf="payments && payments.length === 0">
+      There is no booking yet on your rental.
+    </div>
   </div>
 </section>

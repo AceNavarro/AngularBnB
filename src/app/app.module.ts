@@ -11,6 +11,7 @@ import { RentalModule } from './rental/rental.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
+import { UserModule } from './user/user.module';
 
 const routes: Routes = [
   { path: "", redirectTo: "rentals", pathMatch: "full" }
@@ -29,7 +30,8 @@ const routes: Routes = [
     NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ManageModule
+    ManageModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,29 @@
+<form [ngClass]="isValidatingCard ? 'loading' : ''">
+  <div class="group">
+    <label>
+      <span>Card Number</span>
+      <div #cardNumber class="field"></div>
+    </label>
+    <label>
+      <span>Expiry Date</span>
+      <div #cardExp class="field"></div>
+    </label>
+    <label>
+      <span>CVC</span>
+      <div #cardCvc class="field"></div>
+    </label>
+  </div>
+
+  <div class="outcome">
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    <div *ngIf="token" class="alert alert-success">Card verified successfully.</div>
+  </div>
+
+  <button (click)="onSubmit()" 
+          [disabled]="!isCardValid() || token"
+          type="button">
+    Verify
+  </button>
+  <div class="submit-note">Your credit card will not be charged yet.</div>
+  
+</form>

@@ -20,7 +20,7 @@
       </div>
       <button (click)="openConfirmModal(content)" 
               [disabled]="bookingForm.invalid || !newBooking.startAt || !newBooking.endAt || !newBooking.guests"
-              class="btn btn-danger btn-confirm btn-block">Reserve now
+              class="btn btn-reserve btn-bnb btn-block">Reserve now
       </button>
     </form>
     <hr>
@@ -41,16 +41,30 @@
     </button>
   </div>
   <div class="modal-body">
-    <span>{{newBooking.days}}</span> nights / <span>${{rental.dailyRate}}</span> per night
-    <p>Guests: <span>{{newBooking.guests}}</span></p>
-    <p>Price: <span>${{newBooking.totalPrice}}</span></p>
+    <span class="modal-body-value">{{newBooking.days}}</span> nights / <span class="modal-body-value">${{rental.dailyRate.toFixed(2)}}</span> per night
+    <p>Guests: <span class="modal-body-value">{{newBooking.guests}}</span></p>
+    <p>Price: <span class="modal-body-value">${{newBooking.totalPrice.toFixed(2)}}</span></p>
+    
+    <bnb-payment (paymentConfirmed)="onPaymentConfirmed($event)">
+    </bnb-payment>
+
     <p>Do you want to confirm booking for the selected day(s)?</p>
   </div>
   <div *ngIf="errors.length > 0" class="alert alert-danger modal-error">
     <p *ngFor="let error of errors">{{error.detail}}</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-bnb" (click)="d('Cancel')">Cancel</button>
-    <button ngbAutofocus type="button" class="btn btn-bnb" (click)="reserveRental()">Confirm</button>
+    <button type="button" 
+            class="btn btn-secondary" 
+            (click)="d('Cancel')">
+      Cancel
+    </button>
+    <button ngbAutofocus 
+            [disabled]="!newBooking.paymentToken"
+            type="button" 
+            class="btn btn-bnb" 
+            (click)="reserveRental()">
+      Confirm
+    </button>
   </div>
 </ng-template>
