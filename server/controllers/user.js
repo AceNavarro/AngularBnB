@@ -4,6 +4,56 @@ const User = require("../models/user"),
       { normalizeErrors } = require("../helpers/mongoose");
 
 
+exports.getUser = async function (req, res) {
+  const id = req.params.id;
+  const user = res.locals.user;
+
+  try {
+    if (id === user.id) {
+      // Return all info
+      const foundUser = await User.findById(id);
+      return res.json(foundUser);
+    } else {
+      // Return partial info
+      const foundUser = await User.findById(id)
+        .select("-revenue -stripeCustomerId -password");
+      return res.json(foundUser);
+    }
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+
+exports.updateUser = async function (req, res) {
+  const userData = req.body;
+  const userId = req.params.id
+  const user = res.locals.user;
+
+  // Check for correct user
+  if (user.id !== userId) {
+    return res.status(422).send({ errors: [{ 
+      title: "Invalid user", 
+      detail: "Cannot update profile of another user." }]});
+  }
+
+  try {
+    // Update the user
+    const updatedUser = await User.findOneAndUpdate({ _id: user._id }, 
+                                                    { $set: { 
+                                                        username: userData.username, 
+                                                       email: userData.email 
+                                                    }},
+                                                    { new: true });
+    res.locals.user = updatedUser;                                                
+    return res.json(updatedUser);
+    
+  } catch (err) {
+    return res.status(422).send({ errors: normalizeErrors(err.errors) });
+  }
+};
+
+
 exports.auth = async function (req, res) {
   const { email, password } = req.body;
   if (!email || !password) {

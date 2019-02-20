@@ -91,6 +91,10 @@ export class RentalDetailBookingComponent implements OnInit {
     this.picker.datePicker.element.val("");
   }
 
+  onPaymentConfirmed(token: any) {
+    this.newBooking.paymentToken = token;
+  }
+
   openConfirmModal(content) {
     this.errors = [];
     this.modalRef = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});

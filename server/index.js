@@ -33,6 +33,7 @@ app.use("/api/v1/rentals", require("./routes/rentals"));
 app.use("/api/v1/users", require("./routes/users"));
 app.use("/api/v1/bookings", require("./routes/bookings"));
 app.use("/api/v1", require("./routes/image-upload"));
+app.use("/api/v1/payments", require("./routes/payments"));
 
 if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
